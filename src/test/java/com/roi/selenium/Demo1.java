@@ -1,12 +1,15 @@
 package com.roi.selenium;
 
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,28 +18,29 @@ public class Demo1 {
 
 	WebDriver Driver;
 	
+	
 @BeforeMethod
 public void Initialise() throws InterruptedException {
 	System.setProperty("webdriver.chrome.driver","C:\\Users\\Aditya.Kumar\\Desktop\\Schema Gain Calculator\\com.roi.selenium\\Resources\\chromedriver.exe");
 	Driver = new ChromeDriver();
 	Driver.get("http://10.120.101.74:8088/ROI_UI/index.html#/wizard");
-	Thread.sleep(7000);
+	Driver.manage().timeouts().implicitlyWait(7,TimeUnit.SECONDS) ;
 }
 
 @Test
 public void test() throws InterruptedException {
-	Thread.sleep(3000);
+	Driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	Driver.findElement(By.xpath(".//div/input[@id='Appname']")).sendKeys("ABC");
 	Driver.findElement(By.xpath(".//*[@id='AppID']")).sendKeys("123654");
 //	Select s = new Select(Driver.findElement(By.xpath("//div/button[@data-id='tech']")));
 //	s.selectByIndex(2);
 //	Select s1 = new Select(Driver.findElement(By.xpath("//div/button[@data-id='bc']")));
 //	s1.selectByIndex(2);
-	Thread.sleep(2000);
+	//Thread.sleep(2000);
 	Driver.findElement(By.xpath(".//div/div[1]/p/span")).click();	
-	Thread.sleep(4000);
+	Driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	Driver.findElement(By.xpath("//table/tbody/tr[2]/td[1]")).click();
-	Thread.sleep(4000);
+	Driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	Driver.findElement(By.xpath(".//div/div[2]/p/span")).click();	
 	Thread.sleep(4000);
 	Driver.findElement(By.xpath("//table/tbody/tr[2]/td[1]")).click();
@@ -61,7 +65,7 @@ public void test() throws InterruptedException {
 	Thread.sleep(2000);
 	Driver.findElement(By.xpath(".//*[@id='sms']")).sendKeys("70");
 	Driver.findElement(By.xpath(".//*[@id='exes']")).sendKeys("700");
-	Driver.findElement(By.xpath(".//*[@id='eobs']")).sendKeys("3");
+	Driver.findElement(By.xpath(".//*[@id='eobspooja']")).sendKeys("3");
 	
 	Thread.sleep(2000);
 	
